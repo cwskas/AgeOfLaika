@@ -9,6 +9,10 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    @IBOutlet weak var dogYears: UITextField!
+    @IBOutlet weak var humanYears: UILabel!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +24,18 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    @IBAction func convertButtonPressed(sender: UIButton) {
+        
+        let stringEntered = dogYears.text
+        let optionalIntFromTextEntered = stringEntered.toInt()
+        let intFromOptional = optionalIntFromTextEntered!
+    
+        
+        dogYears.hidden = false
+        dogYears.text = stringEntered + " dog years = " + "\(intFromOptional * 7)" + " human years!"
+        
+        dogYears.resignFirstResponder()
+
+    }
 
 }
-
