@@ -12,7 +12,9 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var dogYears: UITextField!
     @IBOutlet weak var humanYears: UILabel!
-    @IBOutlet weak var tempField: UITextField!
+    @IBOutlet weak var preciseField: UITextField!
+    @IBOutlet weak var morePreciseButton: UIButton!
+    @IBOutlet weak var resetButton: UIButton!
     
 
     override func viewDidLoad() {
@@ -32,14 +34,7 @@ class ViewController: UIViewController {
         let intFromOptional = optionalIntFromTextEntered!
     
         
-        dogYears.hidden = false
         humanYears.text = stringEntered + " dog years = " + "\(intFromOptional * 7)" + " human years!"
-        
-        dogYears.resignFirstResponder()
-
-    }
-    
-    @IBAction func morePreciseButtonPressed(sender: UIButton) {
         
         var morePreciseDogYears:Double
         var doubleFromTextEntered = ((dogYears.text as NSString).doubleValue)
@@ -52,11 +47,28 @@ class ViewController: UIViewController {
         }
         
         
+        preciseField.text = dogYears.text + " dog years = " + "\(morePreciseDogYears)" + " human years!"
+        
+        morePreciseButton.hidden = false
+        resetButton.hidden = false
+        humanYears.hidden = false
+        preciseField.hidden = false
+        morePreciseButton.hidden = false
         dogYears.hidden = false
-        let newString = dogYears.text + " dog years = " + "\(morePreciseDogYears)" + " human years!"
-        tempField.text = newString
         
         dogYears.resignFirstResponder()
+
+    }
+    
+    @IBAction func resetButton(sender: UIButton) {
+        dogYears.text = ""
+//        dogYears.selected = true
+        resetButton.hidden = true
+        humanYears.hidden = true
+        preciseField.hidden = true
+        morePreciseButton.hidden = true
+        
+        dogYears.becomeFirstResponder()
     }
     
 }
