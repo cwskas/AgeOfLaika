@@ -12,6 +12,7 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var dogYears: UITextField!
     @IBOutlet weak var humanYears: UILabel!
+    @IBOutlet weak var tempField: UITextField!
     
 
     override func viewDidLoad() {
@@ -32,10 +33,30 @@ class ViewController: UIViewController {
     
         
         dogYears.hidden = false
-        dogYears.text = stringEntered + " dog years = " + "\(intFromOptional * 7)" + " human years!"
+        humanYears.text = stringEntered + " dog years = " + "\(intFromOptional * 7)" + " human years!"
         
         dogYears.resignFirstResponder()
 
     }
-
+    
+    @IBAction func morePreciseButtonPressed(sender: UIButton) {
+        
+        var morePreciseDogYears:Double
+        var doubleFromTextEntered = ((dogYears.text as NSString).doubleValue)
+        
+        if doubleFromTextEntered <= 2 {
+            morePreciseDogYears = doubleFromTextEntered * 10.5
+        }
+        else {
+            morePreciseDogYears = 10.5 + ((doubleFromTextEntered - 2) * 4)
+        }
+        
+        
+        dogYears.hidden = false
+        let newString = dogYears.text + " dog years = " + "\(morePreciseDogYears)" + " human years!"
+        tempField.text = newString
+        
+        dogYears.resignFirstResponder()
+    }
+    
 }
